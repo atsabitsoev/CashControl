@@ -33,15 +33,25 @@ enum Period: CaseIterable, Identifiable {
     var totalSpentString: String {
         switch self {
         case .day:
-            "Потрачено за день:"
+            return "Потрачено сегодня:"
         case .week:
-            "Потрачено за неделю:"
+            return "Потрачено с начала недели:"
         case .month:
-            "Потрачено за месяц:"
+            let formatter = DateFormatter()
+            formatter.dateFormat = "LLLL"
+            let locale: Locale
+            if let identifier = Locale.preferredLanguages.first {
+                locale = Locale(identifier: identifier)
+            } else {
+                locale = Locale.current
+            }
+            formatter.locale = locale
+            let nameOfMonth = formatter.string(from: Date())
+            return "Потрачено за " + nameOfMonth + ":"
         case .quater:
-            "Потрачено за квартал:"
+            return "Потрачено за квартал:"
         case .year:
-            "Потрачено за год:"
+            return "Потрачено за год:"
         }
     }
     

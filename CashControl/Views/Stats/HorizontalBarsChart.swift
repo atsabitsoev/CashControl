@@ -38,7 +38,7 @@ struct HorizontalBarsChart: View {
         }
         .chartLegend(.hidden)
         .chartRightColors(stats)
-        .frame(height: 300)
+        .frame(height: CGFloat(stats.count * 44) + 24)
     }
 }
 
