@@ -18,7 +18,7 @@ enum TargetDevice {
     case iWatch
     
     public static var currentDevice: Self {
-        var currentDeviceModel: String
+        var currentDeviceModel: String = ""
         #if os(macOS)
         currentDeviceModel = "nativeMac"
         #elseif os(watchOS)

@@ -15,6 +15,5 @@ struct CashControlApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: ExpenseItem.self, isUndoEnabled: true)
     }
 }

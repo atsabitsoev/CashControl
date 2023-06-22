@@ -37,7 +37,7 @@ struct HorizontalBarsChart: View {
                 }
         }
         .chartLegend(.hidden)
-        .chartRightColors()
+        .chartRightColors(stats)
         .frame(height: 300)
     }
 }

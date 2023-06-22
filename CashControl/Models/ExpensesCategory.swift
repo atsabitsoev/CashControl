@@ -207,6 +207,26 @@ struct SuperExpensesCategory: Identifiable {
                         name: "Благотворительность"
                     )
                 ]
+            ),
+            SuperExpensesCategory(
+                id: "9",
+                name: "Ребенок",
+                sfSymbolName: "figure.child",
+                sfSymbolColor: Color.purple,
+                children: [
+                    ExpensesCategory(
+                        id: "9.1",
+                        name: "Памперсы"
+                    ),
+                    ExpensesCategory(
+                        id: "9.2",
+                        name: "Одежда"
+                    ),
+                    ExpensesCategory(
+                        id: "9.3",
+                        name: "Игрушки"
+                    )
+                ]
             )
         ]
     }()

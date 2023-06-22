@@ -38,7 +38,7 @@ struct CategoryPicker: View {
                 withAnimation(.bouncy, completionCriteria: .logicallyComplete) {
                     if statsService.currentSuperCategoryName != superCategoryName {
                         statsService.currentSuperCategoryName = superCategoryName
-                        #if !os(macOS)
+                        #if os(iOS)
                         let generator = UISelectionFeedbackGenerator()
                         generator.selectionChanged()
                         #endif

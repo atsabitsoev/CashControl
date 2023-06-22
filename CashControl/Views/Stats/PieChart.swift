@@ -55,7 +55,7 @@ struct PieChart: View {
             }
         }
         .animation(nil, value: UUID())
-        .chartRightColors()
+        .chartRightColors(stats)
     }
 }
 

@@ -9,45 +9,23 @@ import SwiftUI
 
 
 struct ChartRightColors: ViewModifier {
-    private let subCategoriesColors: [String: Color] = [
-        "Рестораны": Color.blue,
-        "Продукты питания": Color.green,
-        "Кофе/чай": Color.yellow,
-        "Пикник/заготовки": Color.purple,
-        
-        "Кино/театр": Color.blue,
-        "Концерты/фестивали": Color.green,
-        "Спортивные события": Color.yellow,
-        "Аттракционы": Color.purple,
-        
-        "Автомобиль": Color.blue,
-        "Общественный транспорт": Color.green,
-        "Такси/прокат автомобилей": Color.yellow,
-        "Парковка/штрафы": Color.purple,
-        
-        "Аренда/ипотека": Color.blue,
-        "Коммунальные услуги": Color.green,
-        "Ремонт/обустройство": Color.yellow,
-        
-        "Медицина": Color.blue,
-        "Аптека/лекарства": Color.green,
-        "Спорт/фитнес": Color.yellow,
-        "Косметика/уход": Color.purple,
-        
-        "Билеты": Color.blue,
-        "Проживание": Color.green,
-        "Рестораны/кафе": Color.yellow,
-        "Достопримечательности": Color.purple,
-        
-        "Курсы/семинары": Color.blue,
-        "Учебники/материалы": Color.green,
-        "Языковые курсы": Color.yellow,
-        "Учебные поездки": Color.purple,
-        
-        "Личные расходы": Color.green,
-        "Подарки": Color.yellow,
-        "Благотворительность": Color.purple
+    init(stats: [StatItem]) {
+        self.stats = stats
+    }
+    
+    
+    private let colorsForSubCategories: [Color] = [
+        Color.blue,
+        Color.green,
+        Color.red,
+        Color.yellow,
+        Color.cyan,
+        Color.purple,
+        Color.mint,
+        Color.pink,
+        Color.orange
     ]
+    private var stats: [StatItem]
     
     
     func body(content: Content) -> some View {
@@ -55,14 +33,22 @@ struct ChartRightColors: ViewModifier {
             .chartForegroundStyleScale(mapping: { legend in
                 SuperExpensesCategory.all
                     .first(where: { $0.name == legend })?
-                    .sfSymbolColor ?? subCategoriesColors[legend] ?? .black
+                    .sfSymbolColor ?? getColor(byLegend: legend) ?? .black
             })
+    }
+    
+    
+    /// Для подкатегорий
+    private func getColor(byLegend legend: String) -> Color? {
+        guard let statIndex = stats.firstIndex(where: { $0.categoryName == legend }) else { return nil }
+        let colorIndex = statIndex % colorsForSubCategories.count
+        return colorsForSubCategories[colorIndex]
     }
 }
 
 
 extension View {
-    func chartRightColors() -> some View {
-        return self.modifier(ChartRightColors())
+    func chartRightColors(_ stats: [StatItem]) -> some View {
+        return self.modifier(ChartRightColors(stats: stats))
     }
 }

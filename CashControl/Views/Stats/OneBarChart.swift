@@ -29,7 +29,7 @@ struct OneBarChart: View {
                     )
             }
         }
-        .chartRightColors()
+        .chartRightColors(stats)
         .chartLegend(.visible)
     }
 }
