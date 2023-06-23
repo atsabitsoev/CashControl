@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D1143CC2A36707B00D9A81B /* SuperExpensesCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1143CB2A36707B00D9A81B /* SuperExpensesCategoryCell.swift */; };
+		2D209F7B2A45AEA6002A5AC3 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D209F7A2A45AEA6002A5AC3 /* Color+Extension.swift */; };
+		2D209F7D2A45AF15002A5AC3 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D209F7C2A45AF15002A5AC3 /* Text+Extension.swift */; };
+		2D209F7F2A45FC40002A5AC3 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D209F7E2A45FC40002A5AC3 /* SuccessView.swift */; };
 		2D295C7E2A3A2ACD002E5931 /* TargetDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D295C7D2A3A2ACD002E5931 /* TargetDevice.swift */; };
+		2D3EC8EF2A460F5E00DDC485 /* SuperCategoriesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */; };
+		2D3EC8F12A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */; };
 		2D840E402A3CC90F002D7F02 /* HIstoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D840E3F2A3CC90F002D7F02 /* HIstoryView.swift */; };
 		2D8A9C172A35F0E700E68E16 /* CashControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8A9C162A35F0E700E68E16 /* CashControlApp.swift */; };
 		2D8A9C1B2A35F0E700E68E16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8A9C1A2A35F0E700E68E16 /* ContentView.swift */; };
@@ -26,14 +30,16 @@
 		2DC2BAD92A3B006A00FDF856 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC2BAD82A3B006A00FDF856 /* PieChart.swift */; };
 		2DC2BADB2A3B020C00FDF856 /* HorizontalBarsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC2BADA2A3B020C00FDF856 /* HorizontalBarsChart.swift */; };
 		2DE624612A3B51750061C2F4 /* ChartRightColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE624602A3B51750061C2F4 /* ChartRightColors.swift */; };
-		2DEF5ED92A37117A00F59820 /* SuperExpensesCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF5ED82A37117A00F59820 /* SuperExpensesCategoryView.swift */; };
-		2DEF5EDB2A37134E00F59820 /* ExpensesCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF5EDA2A37134E00F59820 /* ExpensesCategoryButton.swift */; };
 		2DEF5EDD2A3715BE00F59820 /* SuperCategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF5EDC2A3715BE00F59820 /* SuperCategoriesList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D1143CB2A36707B00D9A81B /* SuperExpensesCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperExpensesCategoryCell.swift; sourceTree = "<group>"; };
+		2D209F7A2A45AEA6002A5AC3 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		2D209F7C2A45AF15002A5AC3 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
+		2D209F7E2A45FC40002A5AC3 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		2D295C7D2A3A2ACD002E5931 /* TargetDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetDevice.swift; sourceTree = "<group>"; };
+		2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoriesListCell.swift; sourceTree = "<group>"; };
+		2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoriesListCellExpanded.swift; sourceTree = "<group>"; };
 		2D840E3F2A3CC90F002D7F02 /* HIstoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIstoryView.swift; sourceTree = "<group>"; };
 		2D8A9C132A35F0E700E68E16 /* CashControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8A9C162A35F0E700E68E16 /* CashControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashControlApp.swift; sourceTree = "<group>"; };
@@ -54,8 +60,6 @@
 		2DC2BAD82A3B006A00FDF856 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		2DC2BADA2A3B020C00FDF856 /* HorizontalBarsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarsChart.swift; sourceTree = "<group>"; };
 		2DE624602A3B51750061C2F4 /* ChartRightColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRightColors.swift; sourceTree = "<group>"; };
-		2DEF5ED82A37117A00F59820 /* SuperExpensesCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperExpensesCategoryView.swift; sourceTree = "<group>"; };
-		2DEF5EDA2A37134E00F59820 /* ExpensesCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesCategoryButton.swift; sourceTree = "<group>"; };
 		2DEF5EDC2A3715BE00F59820 /* SuperCategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoriesList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D209F792A45AE9C002A5AC3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2D209F7A2A45AEA6002A5AC3 /* Color+Extension.swift */,
+				2D209F7C2A45AF15002A5AC3 /* Text+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2D840E3D2A3CC8E2002D7F02 /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +112,7 @@
 			children = (
 				2D8A9C162A35F0E700E68E16 /* CashControlApp.swift */,
 				2D8A9C1A2A35F0E700E68E16 /* ContentView.swift */,
+				2D209F792A45AE9C002A5AC3 /* Extensions */,
 				2D8EFF3F2A3987EA001DEE9E /* Services */,
 				2DEF5EE12A37161B00F59820 /* Models */,
 				2DEF5EE02A37161000F59820 /* Views */,
@@ -144,11 +158,11 @@
 		2DEF5EDF2A3715E700F59820 /* AddNewExpense */ = {
 			isa = PBXGroup;
 			children = (
-				2DEF5EDA2A37134E00F59820 /* ExpensesCategoryButton.swift */,
 				2DEF5EDC2A3715BE00F59820 /* SuperCategoriesList.swift */,
+				2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */,
+				2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */,
+				2D209F7E2A45FC40002A5AC3 /* SuccessView.swift */,
 				2D958A7E2A37BCEF0005E68A /* AddNewExpenseAlert.swift */,
-				2D1143CB2A36707B00D9A81B /* SuperExpensesCategoryCell.swift */,
-				2DEF5ED82A37117A00F59820 /* SuperExpensesCategoryView.swift */,
 			);
 			path = AddNewExpense;
 			sourceTree = "<group>";
@@ -248,18 +262,20 @@
 				2D8EFF412A3987F5001DEE9E /* StatsService.swift in Sources */,
 				2D8A9C1B2A35F0E700E68E16 /* ContentView.swift in Sources */,
 				2D295C7E2A3A2ACD002E5931 /* TargetDevice.swift in Sources */,
-				2D1143CC2A36707B00D9A81B /* SuperExpensesCategoryCell.swift in Sources */,
-				2DEF5ED92A37117A00F59820 /* SuperExpensesCategoryView.swift in Sources */,
+				2D209F7D2A45AF15002A5AC3 /* Text+Extension.swift in Sources */,
 				2D958A7B2A37B0F60005E68A /* ExpenseItem.swift in Sources */,
+				2D209F7B2A45AEA6002A5AC3 /* Color+Extension.swift in Sources */,
 				2DC2BADB2A3B020C00FDF856 /* HorizontalBarsChart.swift in Sources */,
-				2DEF5EDB2A37134E00F59820 /* ExpensesCategoryButton.swift in Sources */,
 				2DC2BAD92A3B006A00FDF856 /* PieChart.swift in Sources */,
+				2D3EC8F12A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift in Sources */,
 				2D9F19062A3C506E00C7D7E4 /* CategoryPicker.swift in Sources */,
 				2DB99C222A38600600A9FDA8 /* StatsView.swift in Sources */,
+				2D209F7F2A45FC40002A5AC3 /* SuccessView.swift in Sources */,
 				2D840E402A3CC90F002D7F02 /* HIstoryView.swift in Sources */,
 				2D9F19082A3C65B500C7D7E4 /* Period.swift in Sources */,
 				2D8EFF3E2A398760001DEE9E /* StatItem.swift in Sources */,
 				2D8A9C292A35F26700E68E16 /* ExpensesCategory.swift in Sources */,
+				2D3EC8EF2A460F5E00DDC485 /* SuperCategoriesListCell.swift in Sources */,
 				2D958A7F2A37BCEF0005E68A /* AddNewExpenseAlert.swift in Sources */,
 				2DE624612A3B51750061C2F4 /* ChartRightColors.swift in Sources */,
 				2DEF5EDD2A3715BE00F59820 /* SuperCategoriesList.swift in Sources */,

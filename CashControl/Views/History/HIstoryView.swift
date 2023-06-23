@@ -15,9 +15,11 @@ struct HistoryView: View {
         List {
             ForEach(statsService.expenseItems) { item in
                 HStack {
-                    Image(systemName: item.superCategory?.sfSymbolName ?? "scribble")
-                        .foregroundStyle(item.superCategory?.sfSymbolColor ?? .black)
-                        .frame(width: 36)
+                    if let symbol = item.superCategory?.symbol {
+                        Image(systemName: symbol.name)
+                            .foregroundStyle(symbol.color)
+                            .frame(width: 36)
+                    }
                     VStack(alignment: .leading) {
                         Text(item.superCategory?.name ?? "Неизвестно")
                             .font(.headline)

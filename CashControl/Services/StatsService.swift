@@ -22,7 +22,7 @@ final class StatsService {
     
     
     private let context: ModelContext?
-    private var existingCategories: [SuperExpensesCategory] = []
+    private var existingCategories: [ExpensesCategory] = []
     private var allStats: [StatItem] = []
     private var groupedStats: [[StatItem]] = []
     
@@ -92,7 +92,7 @@ final class StatsService {
                     superCategoryName: superCategory.name,
                     categoryName: category.name,
                     value: item.sum,
-                    color: superCategory.sfSymbolColor,
+                    color: superCategory.symbol?.color ?? .red,
                     creationDate: item.creationDate
                 )
             }
@@ -121,7 +121,7 @@ final class StatsService {
     
     
     private func setExistingCategories(from items: [ExpenseItem]) {
-        var result: [SuperExpensesCategory] = []
+        var result: [ExpensesCategory] = []
         for item in items {
             if let superCategory = item.superCategory,
                !result.contains(where: { $0.id == item.superCategoryId }) {

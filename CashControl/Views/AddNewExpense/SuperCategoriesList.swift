@@ -11,7 +11,7 @@ import SwiftData
 
 
 struct SuperCategoriesList: View {
-    private let categories: [SuperExpensesCategory] = SuperExpensesCategory.all
+    @State private var categories: [ExpensesCategory] = ExpensesCategory.all
     @State private var expandedSuperCategoryId: String?
     @State private var processingCategory: ExpensesCategory?
     @State private var isShowingSuccessView: Bool = false
@@ -19,26 +19,28 @@ struct SuperCategoriesList: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
-                VStack(spacing: 8) {
-                    ForEach(categories) { category in
-                        SuperExpensesCategoryCell(
+            List {
+                ForEach($categories) { category in
+                    DisclosureGroup(
+                        isExpanded: .init(
+                            get: { expandedSuperCategoryId == category.id },
+                            set: { isExpanded in
+                                expandedSuperCategoryId = isExpanded ? category.id : nil })
+                    ) {
+                        CategoriesListCellExpanded(
                             category: category,
-                            isExpanded: Binding<Bool>(
-                                get: {
-                                    expandedSuperCategoryId == category.id
-                                },
-                                set: { newValue in
-                                    expandedSuperCategoryId = newValue ? category.id : nil
-                                }),
-                            onSelectCategory: { category in
-                                processingCategory = category
-                            })
+                            processingCategory: $processingCategory
+                        )
+                        .listRowSeparatorTint(Color.clear)
+                    } label: {
+                        CategoriesListCell(category: category)
+                            .frame(height: 56)
                     }
-                    Spacer()
+                    .listRowInsets(EdgeInsets(top: 2, leading: 16, bottom: 2, trailing: 16))
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 24)
+                .onMove(perform: { indices, newOffset in
+                    categories.move(fromOffsets: indices, toOffset: newOffset)
+                })
             }
             .addNewExpenseAlert(
                 processingCategory: $processingCategory,
@@ -52,24 +54,7 @@ struct SuperCategoriesList: View {
                 }
             )
             if isShowingSuccessView {
-                VStack {
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    GroupBox {
-                        Image(systemName: "checkmark.circle")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                            .foregroundStyle(.green)
-                        Text("Готово")
-                    }
-                    .shadow(color: Color.black.opacity(0.3), radius: 60, y: 2)
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                }
+                SuccessView()
             }
         }
     }

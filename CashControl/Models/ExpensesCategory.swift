@@ -9,26 +9,58 @@ import SwiftUI
 
 
 struct ExpensesCategory: Identifiable {
-    let id: String
-    let name: String
-}
-
-
-struct SuperExpensesCategory: Identifiable {
-    let id: String
-    let name: String
-    let sfSymbolName: String
-    let sfSymbolColor: Color
-    let children: [ExpensesCategory]
+    struct SFSymbol: Equatable {
+        let name: String
+        let color: Color
+    }
+    
+    enum CategoryType: Equatable {
+        case superCategory(SFSymbol)
+        case subCategory
+    }
     
     
-    static let all: [SuperExpensesCategory] = {
+    init(
+        id: String,
+        name: String,
+        type: CategoryType = .subCategory,
+        children: [ExpensesCategory]? = nil
+    ) {
+        self.id = id
+        self.name = name
+        self.type = type
+        self.children = children
+        
+        if case let .superCategory(symbol) = type {
+            self.symbol = symbol
+        } else {
+            self.symbol = nil
+        }
+    }
+    
+    
+    let id: String
+    let name: String
+    let type: CategoryType
+    let symbol: SFSymbol?
+    var children: [ExpensesCategory]?
+    
+    
+    static let all: [ExpensesCategory] = {
         [
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "1",
                 name: "Питание",
-                sfSymbolName: "fork.knife",
-                sfSymbolColor: Color(.displayP3, red: 1.0, green: 0.8, blue: 0.0, opacity: 1),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "fork.knife",
+                        color: Color(.displayP3,
+                                     red: 1.0,
+                                     green: 0.8,
+                                     blue: 0.0,
+                                     opacity: 1)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "1.1",
@@ -48,11 +80,19 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "2",
                 name: "Развлечения",
-                sfSymbolName: "gamecontroller",
-                sfSymbolColor: Color(.displayP3, red: 1.0, green: 0.176, blue: 0.333, opacity: 1),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "gamecontroller",
+                        color: Color(.displayP3,
+                                     red: 1.0,
+                                     green: 0.176,
+                                     blue: 0.333,
+                                     opacity: 1)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "2.1",
@@ -72,11 +112,19 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "3",
                 name: "Транспорт",
-                sfSymbolName: "bus",
-                sfSymbolColor: Color(.displayP3, red: 0.0, green: 0.478, blue: 1.0, opacity: 1),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "bus",
+                        color: Color(.displayP3,
+                                     red: 0.0,
+                                     green: 0.478,
+                                     blue: 1.0,
+                                     opacity: 1)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "3.1",
@@ -96,11 +144,19 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "4",
                 name: "Жилье",
-                sfSymbolName: "house",
-                sfSymbolColor: Color(.displayP3, red: 0.0, green: 0.863, blue: 0.435, opacity: 1),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "house",
+                        color: Color(.displayP3,
+                                          red: 0.0,
+                                          green: 0.863,
+                                          blue: 0.435,
+                                          opacity: 1)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "4.1",
@@ -116,11 +172,18 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "5",
                 name: "Здоровье и красота",
-                sfSymbolName: "cross.case",
-                sfSymbolColor: Color(.displayP3, red: 1.0, green: 0.42, blue: 0.506),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "cross.case",
+                        color: Color(.displayP3,
+                                     red: 1.0,
+                                     green: 0.42,
+                                     blue: 0.506)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "5.1",
@@ -140,11 +203,18 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "6",
                 name: "Путешествия",
-                sfSymbolName: "airplane",
-                sfSymbolColor: Color(.displayP3, red: 0.0, green: 0.859, blue: 0.788),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "airplane",
+                        color: Color(.displayP3,
+                                          red: 0.0,
+                                          green: 0.859,
+                                          blue: 0.788)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "6.1",
@@ -164,11 +234,19 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "7",
                 name: "Образование",
-                sfSymbolName: "graduationcap",
-                sfSymbolColor: Color(.displayP3, red: 0.757, green: 0.027, blue: 0.655, opacity: 1),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "graduationcap",
+                        color: Color(.displayP3,
+                                     red: 0.757,
+                                     green: 0.027,
+                                     blue: 0.655,
+                                     opacity: 1)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "7.1",
@@ -188,11 +266,19 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "8",
                 name: "Другое",
-                sfSymbolName: "lightbulb",
-                sfSymbolColor: Color(.displayP3, red: 0.557, green: 0.557, blue: 0.557, opacity: 1),
+                type: .superCategory(
+                    SFSymbol(
+                        name: "lightbulb",
+                        color: Color(.displayP3,
+                                     red: 0.557,
+                                     green: 0.557,
+                                     blue: 0.557,
+                                     opacity: 1)
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "8.1",
@@ -208,11 +294,15 @@ struct SuperExpensesCategory: Identifiable {
                     )
                 ]
             ),
-            SuperExpensesCategory(
+            ExpensesCategory(
                 id: "9",
                 name: "Ребенок",
-                sfSymbolName: "figure.child",
-                sfSymbolColor: Color.purple,
+                type: .superCategory(
+                    SFSymbol(
+                        name: "figure.child",
+                        color: Color.purple
+                    )
+                ),
                 children: [
                     ExpensesCategory(
                         id: "9.1",

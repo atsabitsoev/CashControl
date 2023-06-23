@@ -31,9 +31,9 @@ struct ChartRightColors: ViewModifier {
     func body(content: Content) -> some View {
         content
             .chartForegroundStyleScale(mapping: { legend in
-                SuperExpensesCategory.all
+                ExpensesCategory.all
                     .first(where: { $0.name == legend })?
-                    .sfSymbolColor ?? getColor(byLegend: legend) ?? .black
+                    .symbol?.color ?? getColor(byLegend: legend) ?? .black
             })
     }
     
