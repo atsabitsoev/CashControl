@@ -15,6 +15,7 @@ struct SuperCategoriesList: View {
     @State private var expandedSuperCategoryId: String?
     @State private var processingCategory: ExpensesCategory?
     @State private var isShowingSuccessView: Bool = false
+    @State private var isPresentedNewCategory: Bool = false
     
     
     var body: some View {
@@ -41,7 +42,16 @@ struct SuperCategoriesList: View {
                 .onMove(perform: { indices, newOffset in
                     categories.move(fromOffsets: indices, toOffset: newOffset)
                 })
+                .onDelete(perform: { indexSet in
+                    categories.remove(atOffsets: indexSet)
+                })
+                AddCategorySection(addAction: {
+                    isPresentedNewCategory = true
+                })
             }
+    #if !os(macOS)
+            .listSectionSpacing(8)
+    #endif
             .addNewExpenseAlert(
                 processingCategory: $processingCategory,
                 onAddAction: { expenseItem in
@@ -53,6 +63,9 @@ struct SuperCategoriesList: View {
                     }
                 }
             )
+            .sheet(isPresented: $isPresentedNewCategory, content: {
+                NewCategoryView()
+            })
             if isShowingSuccessView {
                 SuccessView()
             }

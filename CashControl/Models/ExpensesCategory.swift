@@ -40,7 +40,7 @@ struct ExpensesCategory: Identifiable {
     
     
     let id: String
-    let name: String
+    var name: String
     let type: CategoryType
     let symbol: SFSymbol?
     var children: [ExpensesCategory]?

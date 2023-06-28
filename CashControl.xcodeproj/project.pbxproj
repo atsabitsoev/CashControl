@@ -26,6 +26,8 @@
 		2D9F19062A3C506E00C7D7E4 /* CategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F19052A3C506E00C7D7E4 /* CategoryPicker.swift */; };
 		2D9F19082A3C65B500C7D7E4 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F19072A3C65B500C7D7E4 /* Period.swift */; };
 		2DB99C222A38600600A9FDA8 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB99C212A38600600A9FDA8 /* StatsView.swift */; };
+		2DC15AAB2A4B860700842E68 /* AddCategorySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC15AAA2A4B860700842E68 /* AddCategorySection.swift */; };
+		2DC15AAE2A4B87FE00842E68 /* NewCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC15AAD2A4B87FE00842E68 /* NewCategoryView.swift */; };
 		2DC2BAD72A3AFF0C00FDF856 /* OneBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC2BAD62A3AFF0C00FDF856 /* OneBarChart.swift */; };
 		2DC2BAD92A3B006A00FDF856 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC2BAD82A3B006A00FDF856 /* PieChart.swift */; };
 		2DC2BADB2A3B020C00FDF856 /* HorizontalBarsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC2BADA2A3B020C00FDF856 /* HorizontalBarsChart.swift */; };
@@ -56,6 +58,8 @@
 		2D9F19052A3C506E00C7D7E4 /* CategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPicker.swift; sourceTree = "<group>"; };
 		2D9F19072A3C65B500C7D7E4 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		2DB99C212A38600600A9FDA8 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		2DC15AAA2A4B860700842E68 /* AddCategorySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategorySection.swift; sourceTree = "<group>"; };
+		2DC15AAD2A4B87FE00842E68 /* NewCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryView.swift; sourceTree = "<group>"; };
 		2DC2BAD62A3AFF0C00FDF856 /* OneBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneBarChart.swift; sourceTree = "<group>"; };
 		2DC2BAD82A3B006A00FDF856 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		2DC2BADA2A3B020C00FDF856 /* HorizontalBarsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalBarsChart.swift; sourceTree = "<group>"; };
@@ -155,12 +159,21 @@
 			path = Stats;
 			sourceTree = "<group>";
 		};
+		2DC15AAC2A4B87F000842E68 /* NewCategory */ = {
+			isa = PBXGroup;
+			children = (
+				2DC15AAD2A4B87FE00842E68 /* NewCategoryView.swift */,
+			);
+			path = NewCategory;
+			sourceTree = "<group>";
+		};
 		2DEF5EDF2A3715E700F59820 /* AddNewExpense */ = {
 			isa = PBXGroup;
 			children = (
 				2DEF5EDC2A3715BE00F59820 /* SuperCategoriesList.swift */,
 				2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */,
 				2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */,
+				2DC15AAA2A4B860700842E68 /* AddCategorySection.swift */,
 				2D209F7E2A45FC40002A5AC3 /* SuccessView.swift */,
 				2D958A7E2A37BCEF0005E68A /* AddNewExpenseAlert.swift */,
 			);
@@ -170,6 +183,7 @@
 		2DEF5EE02A37161000F59820 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2DC15AAC2A4B87F000842E68 /* NewCategory */,
 				2D840E3D2A3CC8E2002D7F02 /* History */,
 				2DB99C202A385FF600A9FDA8 /* Stats */,
 				2DEF5EDF2A3715E700F59820 /* AddNewExpense */,
@@ -260,6 +274,7 @@
 				2D8A9C172A35F0E700E68E16 /* CashControlApp.swift in Sources */,
 				2DC2BAD72A3AFF0C00FDF856 /* OneBarChart.swift in Sources */,
 				2D8EFF412A3987F5001DEE9E /* StatsService.swift in Sources */,
+				2DC15AAB2A4B860700842E68 /* AddCategorySection.swift in Sources */,
 				2D8A9C1B2A35F0E700E68E16 /* ContentView.swift in Sources */,
 				2D295C7E2A3A2ACD002E5931 /* TargetDevice.swift in Sources */,
 				2D209F7D2A45AF15002A5AC3 /* Text+Extension.swift in Sources */,
@@ -267,6 +282,7 @@
 				2D209F7B2A45AEA6002A5AC3 /* Color+Extension.swift in Sources */,
 				2DC2BADB2A3B020C00FDF856 /* HorizontalBarsChart.swift in Sources */,
 				2DC2BAD92A3B006A00FDF856 /* PieChart.swift in Sources */,
+				2DC15AAE2A4B87FE00842E68 /* NewCategoryView.swift in Sources */,
 				2D3EC8F12A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift in Sources */,
 				2D9F19062A3C506E00C7D7E4 /* CategoryPicker.swift in Sources */,
 				2DB99C222A38600600A9FDA8 /* StatsView.swift in Sources */,

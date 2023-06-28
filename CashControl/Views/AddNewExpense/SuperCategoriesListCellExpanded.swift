@@ -29,5 +29,8 @@ struct CategoriesListCellExpanded: View {
         .onMove(perform: { indices, newOffset in
             category.children?.move(fromOffsets: indices, toOffset: newOffset)
         })
+        .onDelete(perform: { indexSet in
+            category.children?.remove(atOffsets: indexSet)
+        })
     }
 }
