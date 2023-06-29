@@ -6,17 +6,38 @@
 //
 
 import SwiftUI
+import SwiftData
 
 
-struct ExpensesCategory: Identifiable {
+@Model
+final class ExpensesCategory: Identifiable {
     struct SFSymbol: Equatable {
+        init(name: String, color: Color) {
+            self.name = name
+            self.color = color
+        }
+        
         let name: String
         let color: Color
     }
     
     enum CategoryType: Equatable {
+        enum CodingKeys: CodingKey {
+            case superCategory
+            case subCategory
+        }
+        
         case superCategory(SFSymbol)
         case subCategory
+        
+        fileprivate var typeString: String {
+            switch self {
+            case .superCategory:
+                "superCategory"
+            case .subCategory:
+                "subCategory"
+            }
+        }
     }
     
     
@@ -28,25 +49,42 @@ struct ExpensesCategory: Identifiable {
     ) {
         self.id = id
         self.name = name
-        self.type = type
+        self.typeString = type.typeString
         self.children = children
         
         if case let .superCategory(symbol) = type {
-            self.symbol = symbol
+            self.symbolName = symbol.name
+            self.symbolColor = symbol.color
         } else {
-            self.symbol = nil
+            self.symbolName = ""
+            self.symbolColor = Color.black
         }
     }
     
     
     let id: String
     var name: String
-    let type: CategoryType
-    let symbol: SFSymbol?
+    private let typeString: String
+    private let symbolName: String
+    private let symbolColor: Color
+    var type: CategoryType {
+        switch typeString {
+        case "subCategory":
+            return .subCategory
+        case "superCategory":
+            let symbol = SFSymbol(name: symbolName, color: symbolColor)
+            return .superCategory(symbol)
+        default:
+            return .subCategory
+        }
+    }
+    var symbol: SFSymbol? {
+        SFSymbol(name: symbolName, color: symbolColor)
+    }
     var children: [ExpensesCategory]?
     
     
-    static let all: [ExpensesCategory] = {
+    static let defaultArray: [ExpensesCategory] = {
         [
             ExpensesCategory(
                 id: "1",
@@ -320,4 +358,68 @@ struct ExpensesCategory: Identifiable {
             )
         ]
     }()
+}
+
+
+#if os(iOS)
+import UIKit
+#elseif os(watchOS)
+import WatchKit
+#elseif os(macOS)
+import AppKit
+#endif
+
+fileprivate extension Color {
+    #if os(macOS)
+    typealias SystemColor = NSColor
+    #else
+    typealias SystemColor = UIColor
+    #endif
+    
+    var colorComponents: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
+        #if os(macOS)
+        SystemColor(self).getRed(&r, green: &g, blue: &b, alpha: &a)
+        // Note that non RGB color will raise an exception, that I don't now how to catch because it is an Objc exception.
+        #else
+        guard SystemColor(self).getRed(&r, green: &g, blue: &b, alpha: &a) else {
+            // Pay attention that the color should be convertible into RGB format
+            // Colors using hue, saturation and brightness won't work
+            return nil
+        }
+        #endif
+        
+        return (r, g, b, a)
+    }
+}
+
+extension Color: Codable {
+    enum CodingKeys: String, CodingKey {
+        case red, green, blue
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let r = try container.decode(Double.self, forKey: .red)
+        let g = try container.decode(Double.self, forKey: .green)
+        let b = try container.decode(Double.self, forKey: .blue)
+        
+        self.init(red: r, green: g, blue: b)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        guard let colorComponents = self.colorComponents else {
+            return
+        }
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(colorComponents.red, forKey: .red)
+        try container.encode(colorComponents.green, forKey: .green)
+        try container.encode(colorComponents.blue, forKey: .blue)
+    }
 }

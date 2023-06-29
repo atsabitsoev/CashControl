@@ -11,7 +11,7 @@ import SwiftData
 
 
 struct SuperCategoriesList: View {
-    @State private var categories: [ExpensesCategory] = ExpensesCategory.all
+    @State private var categories: [ExpensesCategory] = CategoriesService.shared.allCategories
     @State private var expandedSuperCategoryId: String?
     @State private var processingCategory: ExpensesCategory?
     @State private var isShowingSuccessView: Bool = false

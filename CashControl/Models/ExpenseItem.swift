@@ -53,11 +53,11 @@ final class ExpenseItem {
     }
     
     var category: ExpensesCategory? {
-        ExpensesCategory.all.compactMap(\.children).flatMap({ $0 }).first(where: { $0.id == categoryId })
+        CategoriesService.shared.allCategories.compactMap(\.children).flatMap({ $0 }).first(where: { $0.id == categoryId })
     }
     
     var superCategory: ExpensesCategory? {
-        ExpensesCategory.all.first(where: { $0.id == superCategoryId })
+        CategoriesService.shared.allCategories.first(where: { $0.id == superCategoryId })
     }
     
     var displayCreationDate: String {

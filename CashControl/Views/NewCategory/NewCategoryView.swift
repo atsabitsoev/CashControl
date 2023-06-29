@@ -14,7 +14,7 @@ struct NewCategoryView: View {
     }
     
     
-    private let allCategories: [ExpensesCategory] = ExpensesCategory.all
+    private let allCategories: [ExpensesCategory] = CategoriesService.shared.allCategories
     private let allSymbols: [(String, String)] = [
         ("house", "Жилье"),
         ("car", "Автомобиль"),
