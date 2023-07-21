@@ -7,6 +7,13 @@
 
 import SwiftUI
 import SwiftData
+#if os(iOS)
+import UIKit
+#elseif os(watchOS)
+import WatchKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 
 @Model
@@ -45,19 +52,23 @@ final class ExpensesCategory: Identifiable {
         id: String,
         name: String,
         type: CategoryType = .subCategory,
-        children: [ExpensesCategory]? = nil
+        order: Int,
+        canAddExpenses: Bool = true,
+        children: [ExpensesCategory] = []
     ) {
         self.id = id
         self.name = name
         self.typeString = type.typeString
+        self.order = order
+        self.isShowingInList = canAddExpenses
         self.children = children
         
         if case let .superCategory(symbol) = type {
             self.symbolName = symbol.name
-            self.symbolColor = symbol.color
+            self.symbolColor = symbol.color.toHex()
         } else {
             self.symbolName = ""
-            self.symbolColor = Color.black
+            self.symbolColor = Color.clear.toHex()
         }
     }
     
@@ -66,28 +77,34 @@ final class ExpensesCategory: Identifiable {
     var name: String
     private let typeString: String
     private let symbolName: String
-    private let symbolColor: Color
+    private let symbolColor: String
+    var order: Int
+    var isShowingInList: Bool
     var type: CategoryType {
         switch typeString {
         case "subCategory":
             return .subCategory
         case "superCategory":
-            let symbol = SFSymbol(name: symbolName, color: symbolColor)
-            return .superCategory(symbol)
+            if let symbol = self.symbol {
+                return .superCategory(symbol)
+            } else {
+                return .subCategory
+            }
         default:
             return .subCategory
         }
     }
     var symbol: SFSymbol? {
-        SFSymbol(name: symbolName, color: symbolColor)
+        guard symbolColor != Color.clear.toHex() else { return nil }
+        return SFSymbol(name: symbolName, color: Color.fromHex(symbolColor))
     }
-    var children: [ExpensesCategory]?
+    @Relationship(.cascade) var children: [ExpensesCategory]
     
     
     static let defaultArray: [ExpensesCategory] = {
         [
             ExpensesCategory(
-                id: "1",
+                id: UUID().uuidString,
                 name: "Питание",
                 type: .superCategory(
                     SFSymbol(
@@ -99,27 +116,32 @@ final class ExpensesCategory: Identifiable {
                                      opacity: 1)
                     )
                 ),
+                order: 0,
                 children: [
                     ExpensesCategory(
-                        id: "1.1",
-                        name: "Рестораны"
+                        id: UUID().uuidString,
+                        name: "Рестораны",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "1.2",
-                        name: "Продукты питания"
+                        id: UUID().uuidString,
+                        name: "Продукты питания",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "1.3",
-                        name: "Кофе/чай"
+                        id: UUID().uuidString,
+                        name: "Кофе/чай",
+                        order: 2
                     ),
                     ExpensesCategory(
-                        id: "1.4",
-                        name: "Пикник/заготовки"
+                        id: UUID().uuidString,
+                        name: "Пикник/заготовки",
+                        order: 3
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "2",
+                id: UUID().uuidString,
                 name: "Развлечения",
                 type: .superCategory(
                     SFSymbol(
@@ -131,27 +153,32 @@ final class ExpensesCategory: Identifiable {
                                      opacity: 1)
                     )
                 ),
+                order: 1,
                 children: [
                     ExpensesCategory(
-                        id: "2.1",
-                        name: "Кино/театр"
+                        id: UUID().uuidString,
+                        name: "Кино/театр",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "2.2",
-                        name: "Концерты/фестивали"
+                        id: UUID().uuidString,
+                        name: "Концерты/фестивали",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "2.3",
-                        name: "Спортивные события"
+                        id: UUID().uuidString,
+                        name: "Спортивные события",
+                        order: 2
                     ),
                     ExpensesCategory(
-                        id: "2.4",
-                        name: "Аттракционы"
+                        id: UUID().uuidString,
+                        name: "Аттракционы",
+                        order: 3
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "3",
+                id: UUID().uuidString,
                 name: "Транспорт",
                 type: .superCategory(
                     SFSymbol(
@@ -163,27 +190,32 @@ final class ExpensesCategory: Identifiable {
                                      opacity: 1)
                     )
                 ),
+                order: 2,
                 children: [
                     ExpensesCategory(
-                        id: "3.1",
-                        name: "Автомобиль"
+                        id: UUID().uuidString,
+                        name: "Автомобиль",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "3.2",
-                        name: "Общественный транспорт"
+                        id: UUID().uuidString,
+                        name: "Общественный транспорт",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "3.3",
-                        name: "Такси/прокат автомобилей"
+                        id: UUID().uuidString,
+                        name: "Такси/прокат автомобилей",
+                        order: 2
                     ),
                     ExpensesCategory(
-                        id: "3.4",
-                        name: "Парковка/штрафы"
+                        id: UUID().uuidString,
+                        name: "Парковка/штрафы",
+                        order: 3
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "4",
+                id: UUID().uuidString,
                 name: "Жилье",
                 type: .superCategory(
                     SFSymbol(
@@ -195,23 +227,27 @@ final class ExpensesCategory: Identifiable {
                                           opacity: 1)
                     )
                 ),
+                order: 3,
                 children: [
                     ExpensesCategory(
-                        id: "4.1",
-                        name: "Аренда/ипотека"
+                        id: UUID().uuidString,
+                        name: "Аренда/ипотека",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "4.2",
-                        name: "Коммунальные услуги"
+                        id: UUID().uuidString,
+                        name: "Коммунальные услуги",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "4.3",
-                        name: "Ремонт/обустройство"
+                        id: UUID().uuidString,
+                        name: "Ремонт/обустройство",
+                        order: 2
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "5",
+                id: UUID().uuidString,
                 name: "Здоровье и красота",
                 type: .superCategory(
                     SFSymbol(
@@ -222,27 +258,32 @@ final class ExpensesCategory: Identifiable {
                                      blue: 0.506)
                     )
                 ),
+                order: 4,
                 children: [
                     ExpensesCategory(
-                        id: "5.1",
-                        name: "Медицина"
+                        id: UUID().uuidString,
+                        name: "Медицина",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "5.2",
-                        name: "Аптека/лекарства"
+                        id: UUID().uuidString,
+                        name: "Аптека/лекарства",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "5.3",
-                        name: "Спорт/фитнес"
+                        id: UUID().uuidString,
+                        name: "Спорт/фитнес",
+                        order: 2
                     ),
                     ExpensesCategory(
-                        id: "5.4",
-                        name: "Косметика/уход"
+                        id: UUID().uuidString,
+                        name: "Косметика/уход",
+                        order: 3
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "6",
+                id: UUID().uuidString,
                 name: "Путешествия",
                 type: .superCategory(
                     SFSymbol(
@@ -253,27 +294,32 @@ final class ExpensesCategory: Identifiable {
                                           blue: 0.788)
                     )
                 ),
+                order: 5,
                 children: [
                     ExpensesCategory(
-                        id: "6.1",
-                        name: "Билеты"
+                        id: UUID().uuidString,
+                        name: "Билеты",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "6.2",
-                        name: "Проживание"
+                        id: UUID().uuidString,
+                        name: "Проживание",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "6.3",
-                        name: "Рестораны/кафе"
+                        id: UUID().uuidString,
+                        name: "Рестораны/кафе",
+                        order: 2
                     ),
                     ExpensesCategory(
-                        id: "6.4",
-                        name: "Достопримечательности"
+                        id: UUID().uuidString,
+                        name: "Достопримечательности",
+                        order: 3
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "7",
+                id: UUID().uuidString,
                 name: "Образование",
                 type: .superCategory(
                     SFSymbol(
@@ -285,27 +331,32 @@ final class ExpensesCategory: Identifiable {
                                      opacity: 1)
                     )
                 ),
+                order: 6,
                 children: [
                     ExpensesCategory(
-                        id: "7.1",
-                        name: "Курсы/семинары"
+                        id: UUID().uuidString,
+                        name: "Курсы/семинары",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "7.2",
-                        name: "Учебники/материалы"
+                        id: UUID().uuidString,
+                        name: "Учебники/материалы",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "7.3",
-                        name: "Языковые курсы"
+                        id: UUID().uuidString,
+                        name: "Языковые курсы",
+                        order: 2
                     ),
                     ExpensesCategory(
-                        id: "7.4",
-                        name: "Учебные поездки"
+                        id: UUID().uuidString,
+                        name: "Учебные поездки",
+                        order: 3
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "8",
+                id: UUID().uuidString,
                 name: "Другое",
                 type: .superCategory(
                     SFSymbol(
@@ -317,23 +368,27 @@ final class ExpensesCategory: Identifiable {
                                      opacity: 1)
                     )
                 ),
+                order: 7,
                 children: [
                     ExpensesCategory(
-                        id: "8.1",
-                        name: "Личные расходы"
+                        id: UUID().uuidString,
+                        name: "Личные расходы",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "8.2",
-                        name: "Подарки"
+                        id: UUID().uuidString,
+                        name: "Подарки",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "8.3",
-                        name: "Благотворительность"
+                        id: UUID().uuidString,
+                        name: "Благотворительность",
+                        order: 2
                     )
                 ]
             ),
             ExpensesCategory(
-                id: "9",
+                id: UUID().uuidString,
                 name: "Ребенок",
                 type: .superCategory(
                     SFSymbol(
@@ -341,18 +396,22 @@ final class ExpensesCategory: Identifiable {
                         color: Color.purple
                     )
                 ),
+                order: 8,
                 children: [
                     ExpensesCategory(
-                        id: "9.1",
-                        name: "Памперсы"
+                        id: UUID().uuidString,
+                        name: "Памперсы",
+                        order: 0
                     ),
                     ExpensesCategory(
-                        id: "9.2",
-                        name: "Одежда"
+                        id: UUID().uuidString,
+                        name: "Одежда",
+                        order: 1
                     ),
                     ExpensesCategory(
-                        id: "9.3",
-                        name: "Игрушки"
+                        id: UUID().uuidString,
+                        name: "Игрушки",
+                        order: 2
                     )
                 ]
             )
@@ -360,14 +419,6 @@ final class ExpensesCategory: Identifiable {
     }()
 }
 
-
-#if os(iOS)
-import UIKit
-#elseif os(watchOS)
-import WatchKit
-#elseif os(macOS)
-import AppKit
-#endif
 
 fileprivate extension Color {
     #if os(macOS)
@@ -421,5 +472,42 @@ extension Color: Codable {
         try container.encode(colorComponents.red, forKey: .red)
         try container.encode(colorComponents.green, forKey: .green)
         try container.encode(colorComponents.blue, forKey: .blue)
+    }
+}
+
+
+fileprivate extension Color {
+    // Преобразование Color в Hex-строку
+    func toHex() -> String {
+        #if os(iOS)
+        let color = self.cgColor ?? UIColor(self).cgColor
+        #else
+        let color = self.cgColor ?? NSColor(self).cgColor
+        #endif
+        if let components = color.components {
+            let r = components[0]
+            let g = components[1]
+            let b = components[2]
+            let hex = String(format: "#%02lX%02lX%02lX", lroundf(Float(r) * 255), lroundf(Float(g) * 255), lroundf(Float(b) * 255))
+            return hex
+        }
+        return ""
+    }
+    
+    // Создание Color из Hex-строки
+    static func fromHex(_ hex: String) -> Color {
+        var formattedHex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        if formattedHex.hasPrefix("#") {
+            formattedHex.remove(at: formattedHex.startIndex)
+        }
+        if formattedHex.count == 6 {
+            var rgbValue: UInt64 = 0
+            Scanner(string: formattedHex).scanHexInt64(&rgbValue)
+            let r = Double((rgbValue & 0xFF0000) >> 16) / 255.0
+            let g = Double((rgbValue & 0x00FF00) >> 8) / 255.0
+            let b = Double(rgbValue & 0x0000FF) / 255.0
+            return Color(red: r, green: g, blue: b)
+        }
+        return Color.clear
     }
 }

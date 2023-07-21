@@ -44,8 +44,8 @@ struct AddNewExpenseAlert: ViewModifier {
                 .keyboardShortcut(.cancelAction)
                 Button("Добавить") {
                     if let categoryId = processingCategory?.id,
-                       let superCategoryId = ExpensesCategory.all.first(where: {
-                           $0.children?.contains(where: { $0.id == categoryId }) ?? false
+                       let superCategoryId = CategoriesService.shared.allCategories.first(where: {
+                           $0.children.contains(where: { $0.id == categoryId })
                        })?.id,
                        let userInputSum {
                         let newExpense = ExpenseItem(categoryId: categoryId,

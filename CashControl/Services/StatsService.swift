@@ -12,16 +12,9 @@ import SwiftUI
 @Observable
 final class StatsService {
     static let shared = StatsService()
-    private init() {
-        if let container = try? ModelContainer(for: ExpenseItem.self) {
-            context = ModelContext(container)
-        } else {
-            context = nil
-        }
-    }
     
     
-    private let context: ModelContext?
+    private let context: ModelContext? = SwiftDataService.shared.context
     private var existingCategories: [ExpensesCategory] = []
     private var allStats: [StatItem] = []
     private var groupedStats: [[StatItem]] = []

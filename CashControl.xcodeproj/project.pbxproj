@@ -14,6 +14,10 @@
 		2D39BC5F2A4DA05B008A66B8 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BC5E2A4DA05B008A66B8 /* CategoriesService.swift */; };
 		2D3EC8EF2A460F5E00DDC485 /* SuperCategoriesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */; };
 		2D3EC8F12A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */; };
+		2D5877E32A4DE3E60081493B /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5877E22A4DE3E60081493B /* SwiftDataService.swift */; };
+		2D5877E82A4DE9410081493B /* NewCategoryAppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5877E72A4DE9410081493B /* NewCategoryAppearanceSection.swift */; };
+		2D5877EA2A4DEB200081493B /* NewCategoryOrganizationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5877E92A4DEB200081493B /* NewCategoryOrganizationSection.swift */; };
+		2D5877EC2A4DEBDA0081493B /* NewCategorySubcategoriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5877EB2A4DEBDA0081493B /* NewCategorySubcategoriesSection.swift */; };
 		2D840E402A3CC90F002D7F02 /* HIstoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D840E3F2A3CC90F002D7F02 /* HIstoryView.swift */; };
 		2D8A9C172A35F0E700E68E16 /* CashControlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8A9C162A35F0E700E68E16 /* CashControlApp.swift */; };
 		2D8A9C1B2A35F0E700E68E16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8A9C1A2A35F0E700E68E16 /* ContentView.swift */; };
@@ -44,6 +48,10 @@
 		2D39BC5E2A4DA05B008A66B8 /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
 		2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoriesListCell.swift; sourceTree = "<group>"; };
 		2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoriesListCellExpanded.swift; sourceTree = "<group>"; };
+		2D5877E22A4DE3E60081493B /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
+		2D5877E72A4DE9410081493B /* NewCategoryAppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryAppearanceSection.swift; sourceTree = "<group>"; };
+		2D5877E92A4DEB200081493B /* NewCategoryOrganizationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryOrganizationSection.swift; sourceTree = "<group>"; };
+		2D5877EB2A4DEBDA0081493B /* NewCategorySubcategoriesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategorySubcategoriesSection.swift; sourceTree = "<group>"; };
 		2D840E3F2A3CC90F002D7F02 /* HIstoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIstoryView.swift; sourceTree = "<group>"; };
 		2D8A9C132A35F0E700E68E16 /* CashControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D8A9C162A35F0E700E68E16 /* CashControlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashControlApp.swift; sourceTree = "<group>"; };
@@ -87,6 +95,16 @@
 				2D209F7C2A45AF15002A5AC3 /* Text+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2D5877E42A4DE9240081493B /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				2D5877E72A4DE9410081493B /* NewCategoryAppearanceSection.swift */,
+				2D5877E92A4DEB200081493B /* NewCategoryOrganizationSection.swift */,
+				2D5877EB2A4DEBDA0081493B /* NewCategorySubcategoriesSection.swift */,
+			);
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		2D840E3D2A3CC8E2002D7F02 /* History */ = {
@@ -142,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				2D8EFF402A3987F5001DEE9E /* StatsService.swift */,
+				2D5877E22A4DE3E60081493B /* SwiftDataService.swift */,
 				2D9F19072A3C65B500C7D7E4 /* Period.swift */,
 				2D295C7D2A3A2ACD002E5931 /* TargetDevice.swift */,
 				2D39BC5E2A4DA05B008A66B8 /* CategoriesService.swift */,
@@ -166,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC15AAD2A4B87FE00842E68 /* NewCategoryView.swift */,
+				2D5877E42A4DE9240081493B /* Sections */,
 			);
 			path = NewCategory;
 			sourceTree = "<group>";
@@ -275,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D8A9C172A35F0E700E68E16 /* CashControlApp.swift in Sources */,
+				2D5877EA2A4DEB200081493B /* NewCategoryOrganizationSection.swift in Sources */,
 				2DC2BAD72A3AFF0C00FDF856 /* OneBarChart.swift in Sources */,
 				2D8EFF412A3987F5001DEE9E /* StatsService.swift in Sources */,
 				2DC15AAB2A4B860700842E68 /* AddCategorySection.swift in Sources */,
@@ -289,9 +310,12 @@
 				2D3EC8F12A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift in Sources */,
 				2D9F19062A3C506E00C7D7E4 /* CategoryPicker.swift in Sources */,
 				2DB99C222A38600600A9FDA8 /* StatsView.swift in Sources */,
+				2D5877E32A4DE3E60081493B /* SwiftDataService.swift in Sources */,
 				2D39BC5F2A4DA05B008A66B8 /* CategoriesService.swift in Sources */,
+				2D5877E82A4DE9410081493B /* NewCategoryAppearanceSection.swift in Sources */,
 				2D209F7F2A45FC40002A5AC3 /* SuccessView.swift in Sources */,
 				2D840E402A3CC90F002D7F02 /* HIstoryView.swift in Sources */,
+				2D5877EC2A4DEBDA0081493B /* NewCategorySubcategoriesSection.swift in Sources */,
 				2D9F19082A3C65B500C7D7E4 /* Period.swift in Sources */,
 				2D8EFF3E2A398760001DEE9E /* StatItem.swift in Sources */,
 				2D8A9C292A35F26700E68E16 /* ExpensesCategory.swift in Sources */,

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct NewCategoryView: View {
+    init(isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+    }
+    
     enum FocusedField: Hashable {
         case categoryName
         case subCategoryName(categoryId: String)
@@ -73,103 +77,30 @@ struct NewCategoryView: View {
     @State private var superCategoryIndex: Int = -1
     @State private var children: [ExpensesCategory] = []
     @State private var sfSymbolName: String = "shippingbox"
+    @Binding private var isPresented: Bool
     @FocusState private var focusedField: FocusedField?
     
     
     var body: some View {
         NavigationStack {
             Form {
-                Section("Оформление") {
-                    TextField(text: $name) {
-                        Text("Название категории")
-                    }
-                    .focused($focusedField, equals: .categoryName)
-                    if superCategoryIndex == -1 {
-                        ColorPicker("Цвет", selection: $color)
-                        Picker("Символ", selection: $sfSymbolName, content: {
-                            ForEach(allSymbols, id: \.0) { symbol in
-#if os(macOS)
-                                HStack {
-                                    Text(symbol.1)
-                                    Image(systemName: symbol.0)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 24)
-                                        .foregroundStyle(color)
-                                }
-                                .tag(symbol.0)
-#else
-                                Label {
-                                    Text(symbol.1)
-                                } icon: {
-                                    Image(systemName: symbol.0)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 24)
-                                        .foregroundStyle(color)
-                                }
-                                .tag(symbol.0)
-#endif
-                            }
-                        })
-#if !os(macOS)
-                        .pickerStyle(NavigationLinkPickerStyle())
-#endif
-                    }
-                }
-                Section("Организация") {
-                    Picker("Поместить в категорию", selection: $superCategoryIndex) {
-                        ForEach(0..<allCategories.count, id: \.self) { index in
-                            Label {
-                                Text(allCategories[index].name).tag(index)
-                                    .minimumScaleFactor(0.1)
-                                    .lineLimit(2)
-                            } icon: {
-                                if let symbol = allCategories[index].symbol {
-                                    Image(systemName: symbol.name)
-                                        .foregroundStyle(symbol.color)
-                                } else {
-                                    EmptyView()
-                                }
-                            }
-                            
-                        }
-                        Text("Нет").tag(-1)
-                    }
-#if !os(macOS)
-                    .pickerStyle(NavigationLinkPickerStyle())
-#endif
-                }
+                NewCategoryOrganizationSection(
+                    allCategories: allCategories,
+                    superCategoryIndex: $superCategoryIndex
+                )
+                NewCategoryAppearanceSection(
+                    allSymbols: allSymbols,
+                    name: $name, color: $color,
+                    superCategoryIndex: $superCategoryIndex,
+                    sfSymbolName: $sfSymbolName,
+                    focusedField: _focusedField
+                )
                 if superCategoryIndex == -1 {
-                    Section("Подкатегории") {
-                        ForEach(children, id: \.id) { child in
-                            TextField("Название подкатегории", text: .init(get: {
-                                children.first(where: { $0.id == child.id })?.name ?? "Hello"
-                            }, set: { newValue in
-                                if let index = children.firstIndex(where: { $0.id == child.id }) {
-                                    children[index] = ExpensesCategory(id: child.id, name: newValue)
-                                }
-                            }))
-                            .submitLabel(.done)
-                            .onSubmit({
-                                children.removeAll(where: { $0.name.isEmpty })
-                            })
-                            .focused($focusedField, equals: .subCategoryName(categoryId: child.id))
-                            .onAppear {
-                                focusedField = .subCategoryName(categoryId: child.id)
-                            }
-                        }
-                        .onDelete(perform: { indexSet in
-                            children.remove(atOffsets: indexSet)
-                        })
-                        Button(action: {
-                            children.append(ExpensesCategory(id: UUID().uuidString, name: ""))
-                        },
-                               label: {
-                            Text("Добавить подкатегорию")
-                        })
-                        .disabled(children.contains(where: { $0.name.isEmpty }))
-                    }
+                    NewCategorySubcategoriesSection(
+                        allSymbols: allSymbols,
+                        children: $children,
+                        focusedField: _focusedField
+                    )
                 }
             }
             .navigationTitle("Новая категория")
@@ -180,7 +111,27 @@ struct NewCategoryView: View {
 #endif
             
             Button(action: {
-                print("Hello")
+                if superCategoryIndex == -1 {
+                    CategoriesService.shared.addCategory(
+                        ExpensesCategory(
+                            id: UUID().uuidString,
+                            name: name,
+                            type: .superCategory(ExpensesCategory.SFSymbol(name: sfSymbolName, color: color)),
+                            order: allCategories.count,
+                            children: children
+                        )
+                    )
+                } else {
+                    let superCategoryToChange = allCategories[superCategoryIndex]
+                    let subCategory = ExpensesCategory(
+                        id: UUID().uuidString,
+                        name: name,
+                        type: .subCategory,
+                        order: superCategoryToChange.children.count
+                    )
+                    CategoriesService.shared.addSubCategory(subCategory, to: superCategoryToChange)
+                }
+                isPresented = false
             }, label: {
                 Text("Сохранить")
             })
@@ -188,7 +139,7 @@ struct NewCategoryView: View {
             .disabled(name.isEmpty || (children.filter({ !$0.name.isEmpty }).isEmpty && superCategoryIndex == -1))
         }
         .onAppear {
-            focusedField = .categoryName
+//            focusedField = .categoryName
         }
         .frame(
             minHeight: 300 + CGFloat(children.count * 24),
@@ -198,5 +149,5 @@ struct NewCategoryView: View {
 }
 
 #Preview {
-    NewCategoryView()
+    NewCategoryView(isPresented: .constant(true))
 }

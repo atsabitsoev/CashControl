@@ -53,7 +53,7 @@ final class ExpenseItem {
     }
     
     var category: ExpensesCategory? {
-        CategoriesService.shared.allCategories.compactMap(\.children).flatMap({ $0 }).first(where: { $0.id == categoryId })
+        return CategoriesService.shared.allCategories.flatMap(\.children).first(where: { $0.id == categoryId })
     }
     
     var superCategory: ExpensesCategory? {

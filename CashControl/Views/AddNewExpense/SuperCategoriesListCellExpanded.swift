@@ -12,8 +12,13 @@ struct CategoriesListCellExpanded: View {
     @Binding var processingCategory: ExpensesCategory?
     
     
+    private var sortedAndFilteredChildren: [ExpensesCategory] {
+        category.children.filter(\.isShowingInList).sorted(by: { $0.order < $1.order })
+    }
+    
+    
     var body: some View {
-        ForEach(category.children ?? []) { childCategory in
+        ForEach(sortedAndFilteredChildren) { childCategory in
                 Button {
                     processingCategory = childCategory
                 } label: {
@@ -27,10 +32,20 @@ struct CategoriesListCellExpanded: View {
             .buttonStyle(PlainButtonStyle())
         }
         .onMove(perform: { indices, newOffset in
-            category.children?.move(fromOffsets: indices, toOffset: newOffset)
+            var sortedAndFilteredChildren = self.sortedAndFilteredChildren
+            sortedAndFilteredChildren.move(fromOffsets: indices, toOffset: newOffset)
+            let resultChildren = sortedAndFilteredChildren.enumerated().map { (index, child) -> ExpensesCategory in
+                let child = child
+                child.order = index
+                return child
+            }
+            category.children = resultChildren
+            CategoriesService.shared.updateChildren(resultChildren, for: category)
         })
         .onDelete(perform: { indexSet in
-            category.children?.remove(atOffsets: indexSet)
+            indexSet.forEach { index in
+                CategoriesService.shared.removeCategory(sortedAndFilteredChildren[index])
+            }
         })
     }
 }
