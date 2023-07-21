@@ -18,24 +18,24 @@ enum Period: CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .day:
-            "1 день"
+            String(localized: "1 день")
         case .week:
-            "1 нед"
+            String(localized: "1 нед")
         case .month:
-            "1 мес"
+            String(localized: "1 мес")
         case .quater:
-            "3 мес"
+            String(localized: "3 мес")
         case .year:
-            "1 год"
+            String(localized: "1 год")
         }
     }
     
     var totalSpentString: String {
         switch self {
         case .day:
-            return "Потрачено сегодня:"
+            return String(localized: "Потрачено сегодня:")
         case .week:
-            return "Потрачено с начала недели:"
+            return String(localized: "Потрачено с начала недели:")
         case .month:
             let formatter = DateFormatter()
             formatter.dateFormat = "LLLL"
@@ -47,11 +47,11 @@ enum Period: CaseIterable, Identifiable {
             }
             formatter.locale = locale
             let nameOfMonth = formatter.string(from: Date())
-            return "Потрачено за " + nameOfMonth + ":"
+            return String(localized: "Потрачено за \(nameOfMonth):")
         case .quater:
-            return "Потрачено за квартал:"
+            return String(localized: "Потрачено за квартал:")
         case .year:
-            return "Потрачено за год:"
+            return String(localized: "Потрачено за год:")
         }
     }
     

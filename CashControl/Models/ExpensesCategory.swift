@@ -105,7 +105,7 @@ final class ExpensesCategory: Identifiable {
         [
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Питание",
+                name: String(localized: "Питание"),
                 type: .superCategory(
                     SFSymbol(
                         name: "fork.knife",
@@ -120,29 +120,29 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Рестораны",
+                        name: String(localized: "Рестораны"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Продукты питания",
+                        name: String(localized: "Продукты питания"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Кофе/чай",
+                        name: String(localized: "Кофе/чай"),
                         order: 2
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Пикник/заготовки",
+                        name: String(localized: "Пикник/заготовки"),
                         order: 3
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Развлечения",
+                name: String(localized: "Развлечения"),
                 type: .superCategory(
                     SFSymbol(
                         name: "gamecontroller",
@@ -157,29 +157,29 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Кино/театр",
+                        name: String(localized: "Кино/театр"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Концерты/фестивали",
+                        name: String(localized: "Концерты/фестивали"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Спортивные события",
+                        name: String(localized: "Спортивные события"),
                         order: 2
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Аттракционы",
+                        name: String(localized: "Аттракционы"),
                         order: 3
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Транспорт",
+                name: String(localized: "Транспорт"),
                 type: .superCategory(
                     SFSymbol(
                         name: "bus",
@@ -194,29 +194,29 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Автомобиль",
+                        name: String(localized: "Автомобиль"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Общественный транспорт",
+                        name: String(localized: "Общественный транспорт"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Такси/прокат автомобилей",
+                        name: String(localized: "Такси/прокат автомобилей"),
                         order: 2
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Парковка/штрафы",
+                        name: String(localized: "Парковка/штрафы"),
                         order: 3
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Жилье",
+                name: String(localized: "Жилье"),
                 type: .superCategory(
                     SFSymbol(
                         name: "house",
@@ -231,24 +231,24 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Аренда/ипотека",
+                        name: String(localized: "Аренда/ипотека"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Коммунальные услуги",
+                        name: String(localized: "Коммунальные услуги"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Ремонт/обустройство",
+                        name: String(localized: "Ремонт/обустройство"),
                         order: 2
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Здоровье и красота",
+                name: String(localized: "Здоровье и красота"),
                 type: .superCategory(
                     SFSymbol(
                         name: "cross.case",
@@ -262,29 +262,29 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Медицина",
+                        name: String(localized: "Медицина"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Аптека/лекарства",
+                        name: String(localized: "Аптека/лекарства"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Спорт/фитнес",
+                        name: String(localized: "Спорт/фитнес"),
                         order: 2
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Косметика/уход",
+                        name: String(localized: "Косметика/уход"),
                         order: 3
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Путешествия",
+                name: String(localized: "Путешествия"),
                 type: .superCategory(
                     SFSymbol(
                         name: "airplane",
@@ -298,29 +298,29 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Билеты",
+                        name: String(localized: "Билеты"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Проживание",
+                        name: String(localized: "Проживание"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Рестораны/кафе",
+                        name: String(localized: "Рестораны/кафе"),
                         order: 2
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Достопримечательности",
+                        name: String(localized: "Достопримечательности"),
                         order: 3
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Образование",
+                name: String(localized: "Образование"),
                 type: .superCategory(
                     SFSymbol(
                         name: "graduationcap",
@@ -335,29 +335,29 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Курсы/семинары",
+                        name: String(localized: "Курсы/семинары"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Учебники/материалы",
+                        name: String(localized: "Учебники/материалы"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Языковые курсы",
+                        name: String(localized: "Языковые курсы"),
                         order: 2
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Учебные поездки",
+                        name: String(localized: "Учебные поездки"),
                         order: 3
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Другое",
+                name: String(localized: "Другое"),
                 type: .superCategory(
                     SFSymbol(
                         name: "lightbulb",
@@ -372,24 +372,24 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Личные расходы",
+                        name: String(localized: "Личные расходы"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Подарки",
+                        name: String(localized: "Подарки"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Благотворительность",
+                        name: String(localized: "Благотворительность"),
                         order: 2
                     )
                 ]
             ),
             ExpensesCategory(
                 id: UUID().uuidString,
-                name: "Ребенок",
+                name: String(localized: "Ребенок"),
                 type: .superCategory(
                     SFSymbol(
                         name: "figure.child",
@@ -400,17 +400,17 @@ final class ExpensesCategory: Identifiable {
                 children: [
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Памперсы",
+                        name: String(localized: "Памперсы"),
                         order: 0
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Одежда",
+                        name: String(localized: "Одежда"),
                         order: 1
                     ),
                     ExpensesCategory(
                         id: UUID().uuidString,
-                        name: "Игрушки",
+                        name: String(localized: "Игрушки"),
                         order: 2
                     )
                 ]

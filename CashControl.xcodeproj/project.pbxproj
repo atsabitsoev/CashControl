@@ -12,6 +12,7 @@
 		2D209F7F2A45FC40002A5AC3 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D209F7E2A45FC40002A5AC3 /* SuccessView.swift */; };
 		2D295C7E2A3A2ACD002E5931 /* TargetDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D295C7D2A3A2ACD002E5931 /* TargetDevice.swift */; };
 		2D39BC5F2A4DA05B008A66B8 /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D39BC5E2A4DA05B008A66B8 /* CategoriesService.swift */; };
+		2D3C59152A6A3890008CDD76 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2D3C59142A6A3890008CDD76 /* Localizable.xcstrings */; };
 		2D3EC8EF2A460F5E00DDC485 /* SuperCategoriesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */; };
 		2D3EC8F12A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */; };
 		2D5877E32A4DE3E60081493B /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5877E22A4DE3E60081493B /* SwiftDataService.swift */; };
@@ -46,6 +47,7 @@
 		2D209F7E2A45FC40002A5AC3 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		2D295C7D2A3A2ACD002E5931 /* TargetDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetDevice.swift; sourceTree = "<group>"; };
 		2D39BC5E2A4DA05B008A66B8 /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
+		2D3C59142A6A3890008CDD76 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2D3EC8EE2A460F5E00DDC485 /* SuperCategoriesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoriesListCell.swift; sourceTree = "<group>"; };
 		2D3EC8F02A460F9100DDC485 /* SuperCategoriesListCellExpanded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCategoriesListCellExpanded.swift; sourceTree = "<group>"; };
 		2D5877E22A4DE3E60081493B /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				2D8A9C1E2A35F0E900E68E16 /* CashControl.entitlements */,
 				2D8A9C222A35F0E900E68E16 /* Info.plist */,
 				2D8A9C1F2A35F0E900E68E16 /* Preview Content */,
+				2D3C59142A6A3890008CDD76 /* Localizable.xcstrings */,
 			);
 			path = CashControl;
 			sourceTree = "<group>";
@@ -261,11 +264,13 @@
 			};
 			buildConfigurationList = 2D8A9C0E2A35F0E700E68E16 /* Build configuration list for PBXProject "CashControl" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				"zh-Hans",
 			);
 			mainGroup = 2D8A9C0A2A35F0E700E68E16;
 			productRefGroup = 2D8A9C142A35F0E700E68E16 /* Products */;
@@ -284,6 +289,7 @@
 			files = (
 				2D8A9C212A35F0E900E68E16 /* Preview Assets.xcassets in Resources */,
 				2D8A9C1D2A35F0E900E68E16 /* Assets.xcassets in Resources */,
+				2D3C59152A6A3890008CDD76 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
